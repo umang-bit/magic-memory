@@ -58,7 +58,7 @@ useEffect(()=>{
     }
     else{
 
-      resetTurn()
+      setTimeout(()=>resetTurn(),1000)
     }
   }
 },[firstChoice,secondChoice])
@@ -88,7 +88,10 @@ const resetTurn = ()=>{
       
       <div className='card-grid'>
         {cards.map(card=>(
-          <SingleCard key={card.id} card={card} handleChoice ={handleChoice}/>//here we will have to pass card property so in singlecard.js it can access src
+          <SingleCard key={card.id} card={card} handleChoice ={handleChoice} flipped ={firstChoice==card || secondChoice == card || card.matched}/>
+          //here we will have to pass card property so in singlecard.js it can access src
+          //we keep the flipped property true only in these 3 conditions , if the card is first choice , if the card is second choice or if it has been matched already
+          //using this matched property we will design the card in css either show its front or show its back
         ))
 
         }
