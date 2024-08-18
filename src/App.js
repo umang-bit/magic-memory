@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import SingleCard from './SingleCard'
 //first we will need an array of cards or you can say there image sources there are 6 of them
 const arr =[
   {src :"img/helmet-1.png"},
@@ -35,16 +36,16 @@ const shuffleCards=()=>{
     //within it we will use map function on the state cards and take card as parameter and for each card we will return
     //another div of classname card and key = card.id within it just return the front and back image of the card.
     //also we need to give it some styling
+
+
+    //go to singlecard.js for next revision
     <div className="App">
       <h1>Magic Match</h1>
       <button onClick={shuffleCards}>New Game</button>
       
       <div className='card-grid'>
         {cards.map(card=>(
-          <div className='card' key={card.id}>
-            <img class="front" src={card.src} alt='front'></img>
-            <img class="back" src="/img/cover.png" alt='back'></img>
-          </div>
+          <SingleCard key={card.id} card={card}/>//here we will have to pass card property so in singlecard.js it can access src
         ))
 
         }
