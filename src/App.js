@@ -31,9 +31,24 @@ const shuffleCards=()=>{
   console.log(cards,turns)
 }
   return (
+    //here on the 5th line we added the card grid make a div of card grid class so we can use css later
+    //within it we will use map function on the state cards and take card as parameter and for each card we will return
+    //another div of classname card and key = card.id within it just return the front and back image of the card.
+    //also we need to give it some styling
     <div className="App">
       <h1>Magic Match</h1>
       <button onClick={shuffleCards}>New Game</button>
+      
+      <div className='card-grid'>
+        {cards.map(card=>(
+          <div className='card' key={card.id}>
+            <img class="front" src={card.src} alt='front'></img>
+            <img class="back" src="/img/cover.png" alt='back'></img>
+          </div>
+        ))
+
+        }
+      </div>
     </div>
   );
 }
