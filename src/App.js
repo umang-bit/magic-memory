@@ -3,12 +3,12 @@ import './App.css'
 import SingleCard from './SingleCard'
 //first we will need an array of cards or you can say there image sources there are 6 of them
 const arr =[
-  {src :"img/helmet-1.png"},
-  {src :"img/potion-1.png"},
-  {src :"img/ring-1.png"},
-  {src :"img/scroll-1.png"},
-  {src :"img/shield-1.png"},
-  {src :"img/sword-1.png"},
+  {src :"img/helmet-1.png" , matched : false},
+  {src :"img/potion-1.png" , matched : false},
+  {src :"img/ring-1.png" , matched : false},
+  {src :"img/scroll-1.png" , matched : false},
+  {src :"img/shield-1.png" , matched : false},
+  {src :"img/sword-1.png" , matched : false},
 
 ]
 
@@ -43,16 +43,26 @@ const shuffleCards=()=>{
 useEffect(()=>{
   if(firstChoice && secondChoice){//if both choices are there only then we compare or else no point comparing
     if(firstChoice.src === secondChoice.src){
-      console.log("they are the same")
+      //if they match we have to make there matched property to true and we will do that like this
+      setCards(prevCards =>{
+        return prevCards.map(card =>{
+          if (card.src === firstChoice.src){
+            return {...card,matched : true}
+          }//this returns all the cards properties to be the same only altering the matched to become true          
+          else{
+            return {card}//this alters nothing we return as it is
+          }
+        })
+      })
       resetTurn()
     }
     else{
-      console.log("they are different")
+
       resetTurn()
     }
   }
 },[firstChoice,secondChoice])
-
+console.log(cards)
 //this function is to rest the choices after two cards have been selected and to increment the number of turns
 const resetTurn = ()=>{
   setFirstChoice(null)
